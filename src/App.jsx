@@ -3,7 +3,24 @@ import SignUp from "./components/signup/SignUp";
 import Login from './components/login/Login';
 import Dashboard from './components/dashboard/Dashboard';
 import Share from "./components/share/Share";
-import DynatraceRouteTracker from "./DynatraceRouteTracker";
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+
+function DynatraceRouteTracker() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (window.dtrum) {
+      window.dtrum.setPage({
+        name: location.pathname,
+        group: location.pathname
+      });
+    }
+  }, [location]);
+
+  return null;
+}
+
 
 
 function App() {
